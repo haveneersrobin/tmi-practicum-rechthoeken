@@ -55,4 +55,9 @@ public class Rectangle {
         return this.getRbY()-this.getLoY();
     }
 
+    @Override
+    public String toString() {
+        return "Rectangle[LoX: " + this.getLoX() + ", LoY: "+ this.getLoY() + ", RbX: "+ this.getRbX() + ", RbY: " + this.getRbY()+ "]";
+    }
+
 }
