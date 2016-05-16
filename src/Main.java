@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.io.*;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Main {
 
@@ -15,29 +18,21 @@ public class Main {
         rectangles = Util.parseInput(br);
         br.close();
 
-        System.out.println("Rects:" + rectangles);
-
         FirstAlgorithm algo1 = new FirstAlgorithm();
+        ArrayList<ArrayList<Point>> intersections = algo1.calculateIntersections(rectangles);
 
-        ArrayList<Intersections> result = new ArrayList<Intersections>();
-        for(Rectangle r1 : rectangles) {
-            for(Rectangle r2 :  rectangles) {
-                if(r1 != r2) {
-                    result.add(algo1.calculateIntersection(r1, r1));
-                }
+        ArrayList<Point> result = new ArrayList<>();
+        for(ArrayList<Point> p : intersections) {
+            for(Point point : p ) {
+                result.add(point);
             }
         }
-
-        if(result.size() == 0) {
-            System.out.println("No intersections found");
+        Set<Point> pointSet = new HashSet<>();
+        pointSet.addAll(result);
+        result.clear();
+        result.addAll(pointSet);
+        for(Point point : pointSet) {
+            System.out.println(point);
         }
-        else {
-            System.out.println(result);
-            for(Intersections i : result) {
-                System.out.println(i.getFirst());
-                System.out.println(i.getSecond());
-            }
-        }
-
     }
 }

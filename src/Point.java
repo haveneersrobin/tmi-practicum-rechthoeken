@@ -11,7 +11,7 @@ public class Point {
         this.setY(y);
     }
 
-    public double getX() {
+    public double x() {
         return x;
     }
 
@@ -19,7 +19,7 @@ public class Point {
         this.x = x;
     }
 
-    public double getY() {
+    public double y() {
         return y;
     }
 
@@ -29,6 +29,23 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point(x: " + this.getX() + ", y: " + this.getY() + ")";
+        return this.x() + " " + this.y();
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != Point.class) {
+            return false;
+        }
+        Point other = (Point) obj;
+        if (this.x() == other.x() && this.y() == y()) {
+            return true;
+        }
+        return false;
+    }
+
 }
