@@ -104,13 +104,19 @@ public class Rectangle {
 
     }
 
-    private boolean onEitherEdge(double x, double y, Point lo, Point lb, Point ro, Point rb) {
-        return onCertainEdge(x, y, lo, lb) ||
+    private boolean onEitherEdge(double x, double y, Point lo, Point lb, Point ro, Point rb, Point lo2, Point lb2, Point ro2, Point rb2 ) {
+        return (onCertainEdge(x, y, lo, lb) ||
                 onCertainEdge(x, y, lo, ro) ||
                 onCertainEdge(x, y, ro, rb) ||
-                onCertainEdge(x, y, lb, rb);
+                onCertainEdge(x, y, lb, rb)) &&
+                (onCertainEdge(x, y, lo2, lb2) ||
+                onCertainEdge(x, y, lo2, ro2) ||
+                onCertainEdge(x, y, ro2, rb2) ||
+                onCertainEdge(x, y, lb2, rb2));
+    }
 
-
+    private static boolean isACorner(Point point, Rectangle r) {
+        return point.equals(r.getLb()) || point.equals(r.getLo()) || point.equals(r.getRb()) || point.equals(r.getRo());
     }
 
     public  ArrayList<Point> intersections(Rectangle r2) {
@@ -127,14 +133,21 @@ public class Rectangle {
             double x8 = x6;
             double y8 = y5;
             // Geen van de 4 coordinaten is een van de vier hoekpunten
-            if((x5 != this.getLo().x() || x5 != r2.getLo().x())
-                    && (x6 != this.getRb().x() || x6 != r2.getRb().x())
-                    && (y5 != this.getLo().y() || y5 != r2.getLo().y())
-                    && (y6 != this.getRb().y() || y6 != r2.getRb().y())
-                    && (x7 != this.getLo().x() || x7 != r2.getLo().x())
-                    && (x8 != this.getRb().x() || x8 != r2.getRb().x())
-                    && (y7 != this.getLo().y() || y7 != r2.getLo().y())
-                    && (y8 != this.getRb().y() || y8 != r2.getRb().y())) {
+
+            Point first = new Point(x5, y5);
+            Point second = new Point(x6, y6);
+            Point third = new Point(x7, y7);
+            Point fourth = new Point(x8, y8);
+
+            if((!isACorner(first, this) &&
+                    !isACorner(second, this)) &&
+                    !isACorner(third, this) &&
+                    !isACorner(fourth, this) &&
+                    !isACorner(first, r2) &&
+                    !isACorner(second, r2) &&
+                    !isACorner(third, r2) &&
+                    !isACorner(fourth, r2)) {
+                System.out.println("Hier");
                 intersectingPoints.add(new Point(x5, y5));
                 intersectingPoints.add(new Point(x6, y6));
                 intersectingPoints.add(new Point(x7, y7));
@@ -142,16 +155,16 @@ public class Rectangle {
                 return intersectingPoints;
             }
 
-            if(onEitherEdge(x5, y5, this.getLo(), this.getLb(), this.getRo(), this.getRb())) {
+            if(onEitherEdge(x5, y5, this.getLo(), this.getLb(), this.getRo(), this.getRb(), r2.getLo(), r2.getLb(), r2.getRo(), r2.getRb())) {
                 intersectingPoints.add(new Point(x5, y5));
             }
-            if(onEitherEdge(x6, y6, this.getLo(), this.getLb(), this.getRo(), this.getRb())) {
+            if(onEitherEdge(x6, y6, this.getLo(), this.getLb(), this.getRo(), this.getRb(), r2.getLo(), r2.getLb(), r2.getRo(), r2.getRb())) {
                 intersectingPoints.add(new Point(x6, y6));
             }
-            if(onEitherEdge(x7, y7, this.getLo(), this.getLb(), this.getRo(), this.getRb())) {
+            if(onEitherEdge(x7, y7, this.getLo(), this.getLb(), this.getRo(), this.getRb(), r2.getLo(), r2.getLb(), r2.getRo(), r2.getRb())) {
                 intersectingPoints.add(new Point(x7, y7));
             }
-            if(onEitherEdge(x8, y8, this.getLo(), this.getLb(), this.getRo(), this.getRb())) {
+            if(onEitherEdge(x8, y8, this.getLo(), this.getLb(), this.getRo(), this.getRb(), r2.getLo(), r2.getLb(), r2.getRo(), r2.getRb())) {
                 intersectingPoints.add(new Point(x8, y8));
             }
 

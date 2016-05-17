@@ -9,7 +9,7 @@ public class FirstAlgorithm {
 
     public FirstAlgorithm() {}
 
-    /*public ArrayList<ArrayList<Point>> calculateIntersections(ArrayList<Rectangle> rectangles) {
+    public ArrayList<ArrayList<Point>> calculateIntersections(ArrayList<Rectangle> rectangles) {
         ArrayList<ArrayList<Point>> allIntersections = new ArrayList<>();
         for(Rectangle r : rectangles) {
             for(Rectangle s : rectangles){
@@ -19,9 +19,9 @@ public class FirstAlgorithm {
             }
         }
         return allIntersections;
-    }*/
+    }
 
-    public ArrayList<ArrayList<Point>> calculateIntersections(ArrayList<Rectangle> rectangles) {
+    /*public ArrayList<ArrayList<Point>> calculateIntersections(ArrayList<Rectangle> rectangles) {
         ArrayList<ArrayList<Point>> allIntersections = new ArrayList<>();
         int length = rectangles.size();
         for(int i = 0; i < length; i++) {
@@ -32,5 +32,5 @@ public class FirstAlgorithm {
             }
         }
         return allIntersections;
-    }
+    }*/
 }

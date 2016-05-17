@@ -31,22 +31,4 @@ public final class Util {
         }
         return new Rectangle(coordinates[0], coordinates[1], coordinates[2], coordinates[3]);
     }
-
-    public static ArrayList<Rectangle> generateRandomRectanlges(int size) {
-        ArrayList<Rectangle> result = new ArrayList<>();
-        for(int i = 0; i < size; i ++) {
-            double x1 = ThreadLocalRandom.current().nextDouble(0,1);
-            double y1 = ThreadLocalRandom.current().nextDouble(0,1);
-            double x2 = -1.0;
-            while(x2 < x1) {
-                x2 = ThreadLocalRandom.current().nextDouble(0,1);
-            }
-            double y2 = -1.0;
-            while(y2 < y1) {
-                y2 = ThreadLocalRandom.current().nextDouble(0,1);
-            }
-            result.add(new Rectangle(x1,x2,y1,y2));
-        }
-        return result;
-    }
 }

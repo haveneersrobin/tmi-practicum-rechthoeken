@@ -3,7 +3,6 @@ clear;
 close all;
 
 fid = fopen('data.txt');
-data = zeros(5,4);
 tline = fgetl(fid);
 c = 1;
 while ischar(tline)
@@ -14,7 +13,6 @@ end
 fclose(fid);
 
 fid = fopen('points.txt');
-points = zeros(71,2);
 tline = fgetl(fid);
 
 c = 1;
@@ -27,17 +25,19 @@ fclose(fid);
 
 
 figure;
-points = points * 100.00;
-points
-data = data * 100.00;
+
+
+[m,~] = size(data);
+cmap = hsv(m+1);
+m
 data
-cmap = hsv(5);
-for n=1:5
+for n=1:m
     rectangle('Position', [data(n,1), data(n,2), (data(n,3)-data(n,1)), (data(n,4)-data(n,2))],'EdgeColor',cmap(n,:))
     hold on;
 end
 
-for n=1:100
+[m,~] = size(points);
+for n=1:m
     plot(points(n,1), points(n,2),'*');
 end
 
