@@ -41,5 +41,8 @@ for n=1:m
     plot(points(n,1), points(n,2),'*');
 end
 
+grid on 
+grid minor
+
 
 

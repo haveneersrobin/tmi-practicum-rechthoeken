@@ -42,7 +42,7 @@ public class Point {
             return false;
         }
         Point other = (Point) obj;
-        if (this.x() == other.x() && this.y() == y()) {
+        if (this.x() == other.x() && this.y() == other.y()) {
             return true;
         }
         return false;
